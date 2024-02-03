@@ -18,11 +18,10 @@ public class StorageRetrievalAWSS3Option implements StorageRetrievalOption {
   private String enabled;
 
   @Override
-  public Storage execute(final Storage storage) {
+  public void execute(final Storage storage) {
     var obj = amazonS3.getObject(bucketName, storage.getPathname());
     var uri = obj.getObjectContent().getHttpRequest().getURI();
     storage.getUrls().put(StorageType.AWS_S3, uri);
-    return storage;
   }
 
   @Override

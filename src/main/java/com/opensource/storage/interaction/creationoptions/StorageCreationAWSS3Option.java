@@ -2,13 +2,11 @@ package com.opensource.storage.interaction.creationoptions;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-
 import com.opensource.storage.enumeration.StorageType;
 import com.opensource.storage.utility.VerifyCanApply;
 import com.opensource.storage.valueobject.Storage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-
 
 @RequiredArgsConstructor
 public class StorageCreationAWSS3Option implements StorageCreationOption {
