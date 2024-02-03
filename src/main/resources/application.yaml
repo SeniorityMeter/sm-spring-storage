@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: os-spring-storage
+  cloud:
+    storage:
+      aws:
+        credentials:
+          access-key: ${AWS_ACCESS_KEY:os-spring-storage-access-key}
+          secret-key: ${AWS_SECRET_KEY:os-spring-storage-secret-key}
+        s3:
+          enabled: false
+          bucket:
+            name: ${AWS_S3_BUCKET_NAME:os-spring-storage-bucket-name}
