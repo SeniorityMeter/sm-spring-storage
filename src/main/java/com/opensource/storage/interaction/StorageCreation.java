@@ -1,7 +1,8 @@
 package com.opensource.storage.interaction;
 
+import com.opensource.storage.exception.MessageError;
 import com.opensource.storage.exception.StorageException;
-import com.opensource.storage.interaction.options.StorageCreationOption;
+import com.opensource.storage.interaction.creationoptions.StorageCreationOption;
 import com.opensource.storage.utility.FileConverter;
 import com.opensource.storage.valueobject.Storage;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +18,6 @@ public class StorageCreation {
   private final List<StorageCreationOption> options;
 
   public Storage execute(final Storage storage) {
-    saveFile(storage);
-
-    return retrieveFile(storage);
-  }
-
-  private void saveFile(final Storage storage) {
     try {
       File fileConverted = FileConverter.of(storage.getMultipartFile(), storage.getPathname());
       storage.setFile(fileConverted);
@@ -35,6 +30,7 @@ public class StorageCreation {
 
       storage.setFile(null);
       Files.delete(fileConverted.toPath());
+      return storage;
     } catch (Exception e) {
       throw new StorageException("Error saving file");
     }
@@ -44,14 +40,11 @@ public class StorageCreation {
     for (StorageCreationOption option : optionsApplied) {
       try {
         option.create(storage);
-        storage.getSuccessSavedTypes().add(option.getType());
-      } catch (Exception ignored) {
-        storage.getFailedSavedTypes().add(option.getType());
+        storage.getSuccess().add(option.getType());
+      } catch (Exception e) {
+        storage.getCreationFails()
+            .add(MessageError.builder().message(option.getType().name()).details(e.getMessage()).build());
       }
     }
-  }
-
-  private Storage retrieveFile(final Storage storage) {
-    return storage;
   }
 }

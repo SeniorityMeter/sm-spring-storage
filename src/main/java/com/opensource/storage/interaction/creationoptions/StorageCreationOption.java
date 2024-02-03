@@ -1,4 +1,4 @@
-package com.opensource.storage.interaction.options;
+package com.opensource.storage.interaction.creationoptions;
 
 import com.opensource.storage.enumeration.StorageType;
 import com.opensource.storage.valueobject.Storage;

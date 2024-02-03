@@ -1,17 +1,14 @@
-package com.opensource.storage.interaction.options;
+package com.opensource.storage.interaction.retrievaloptions;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-
 import com.opensource.storage.enumeration.StorageType;
+import com.opensource.storage.utility.VerifyCanApply;
 import com.opensource.storage.valueobject.Storage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 
-
 @RequiredArgsConstructor
-public class StorageCreationAWSS3Option implements StorageCreationOption {
-
+public class StorageRetrievalAWSS3Option implements StorageRetrievalOption {
   private final AmazonS3 amazonS3;
 
   @Value("${spring.cloud.storage.aws.s3.bucket.name}")
@@ -21,16 +18,17 @@ public class StorageCreationAWSS3Option implements StorageCreationOption {
   private String enabled;
 
   @Override
-  public void create(final Storage storage) {
-    var awsObj = new PutObjectRequest(bucketName, storage.getPathname(), storage.getFile());
-    amazonS3.putObject(awsObj);
+  public Storage execute(final Storage storage) {
+    var obj = amazonS3.getObject(bucketName, storage.getPathname());
+    var uri = obj.getObjectContent().getHttpRequest().getURI();
+    storage.getUrls().put(StorageType.AWS_S3, uri);
+    return storage;
   }
 
   @Override
   public boolean canApply(final StorageType storageType) {
     final var awsS3Enabled = Boolean.TRUE.equals(Boolean.valueOf(enabled));
-    final var storageTypeMatch = getType().equals(storageType) || StorageType.ALL.equals(storageType);
-    return awsS3Enabled && storageTypeMatch;
+    return VerifyCanApply.execute(storageType, getType(), awsS3Enabled);
   }
 
   @Override
