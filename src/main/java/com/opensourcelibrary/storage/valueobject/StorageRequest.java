@@ -1,10 +1,11 @@
-package com.opensource.storage.valueobject;
+package com.opensourcelibrary.storage.valueobject;
 
-import com.opensource.storage.enumeration.StorageType;
-import com.opensource.storage.exception.MessageError;
+import com.opensourcelibrary.storage.enumeration.StorageType;
+import com.opensourcelibrary.storage.exception.MessageError;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;

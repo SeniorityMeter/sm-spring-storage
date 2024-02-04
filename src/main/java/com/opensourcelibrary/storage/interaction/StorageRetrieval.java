@@ -1,12 +1,13 @@
-package com.opensource.storage.interaction;
+package com.opensourcelibrary.storage.interaction;
 
-import com.opensource.storage.exception.MessageError;
-import com.opensource.storage.exception.StorageException;
-import com.opensource.storage.interaction.retrievaloptions.StorageRetrievalOption;
-import com.opensource.storage.valueobject.StorageRequest;
-import com.opensource.storage.valueobject.StorageResponse;
+import com.opensourcelibrary.storage.exception.MessageError;
+import com.opensourcelibrary.storage.exception.StorageException;
+import com.opensourcelibrary.storage.interaction.retrievaloptions.StorageRetrievalOption;
+import com.opensourcelibrary.storage.valueobject.StorageRequest;
+import com.opensourcelibrary.storage.valueobject.StorageResponse;
 import java.util.ArrayList;
 import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

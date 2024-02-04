@@ -1,10 +1,10 @@
-package com.opensource.storage.interaction.creationoptions;
+package com.opensourcelibrary.storage.interaction.creationoptions;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.opensource.storage.enumeration.StorageType;
-import com.opensource.storage.utility.VerifyCanApply;
-import com.opensource.storage.valueobject.StorageRequest;
+import com.opensourcelibrary.storage.enumeration.StorageType;
+import com.opensourcelibrary.storage.utility.VerifyCanApply;
+import com.opensourcelibrary.storage.valueobject.StorageRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
