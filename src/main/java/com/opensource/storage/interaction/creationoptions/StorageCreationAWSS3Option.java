@@ -4,7 +4,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.opensource.storage.enumeration.StorageType;
 import com.opensource.storage.utility.VerifyCanApply;
-import com.opensource.storage.valueobject.Storage;
+import com.opensource.storage.valueobject.StorageRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -20,8 +20,9 @@ public class StorageCreationAWSS3Option implements StorageCreationOption {
   private String enabled;
 
   @Override
-  public void create(final Storage storage) {
-    var awsObj = new PutObjectRequest(bucketName, storage.getPathname(), storage.getFile());
+  public void create(final StorageRequest request) {
+    var key = request.getPathname() + request.getFilename();
+    var awsObj = new PutObjectRequest(bucketName, key, request.getFile());
     amazonS3.putObject(awsObj);
   }
 

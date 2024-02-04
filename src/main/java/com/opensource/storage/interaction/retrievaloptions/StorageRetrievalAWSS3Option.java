@@ -3,7 +3,8 @@ package com.opensource.storage.interaction.retrievaloptions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.opensource.storage.enumeration.StorageType;
 import com.opensource.storage.utility.VerifyCanApply;
-import com.opensource.storage.valueobject.Storage;
+import com.opensource.storage.valueobject.StorageRequest;
+import com.opensource.storage.valueobject.StorageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -18,10 +19,12 @@ public class StorageRetrievalAWSS3Option implements StorageRetrievalOption {
   private String enabled;
 
   @Override
-  public void execute(final Storage storage) {
-    var obj = amazonS3.getObject(bucketName, storage.getPathname());
+  public StorageResponse execute(final StorageRequest request, final StorageResponse response) {
+    var key = request.getPathname() + request.getFilename();
+    var obj = amazonS3.getObject(bucketName, key);
     var uri = obj.getObjectContent().getHttpRequest().getURI();
-    storage.getUrls().put(StorageType.AWS_S3, uri);
+    response.getUrls().put(StorageType.AWS_S3, uri);
+    return response;
   }
 
   @Override

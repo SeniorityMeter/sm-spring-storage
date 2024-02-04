@@ -4,7 +4,7 @@ import com.opensource.storage.exception.MessageError;
 import com.opensource.storage.exception.StorageException;
 import com.opensource.storage.interaction.creationoptions.StorageCreationOption;
 import com.opensource.storage.utility.FileConverter;
-import com.opensource.storage.valueobject.Storage;
+import com.opensource.storage.valueobject.StorageRequest;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.List;
@@ -16,31 +16,33 @@ import org.springframework.stereotype.Service;
 public class StorageCreation {
   private final List<StorageCreationOption> options;
 
-  public Storage execute(final Storage storage) {
+  public StorageRequest execute(final StorageRequest storageRequest) {
     try {
-      File fileConverted = FileConverter.of(storage.getMultipartFile(), storage.getPathname());
-      storage.setFile(fileConverted);
+      File fileConverted =
+          FileConverter.of(storageRequest.getMultipartFile(), storageRequest.getFilename());
+      storageRequest.setFile(fileConverted);
 
       var optionsApplied =
-          options.stream().filter(option -> option.canApply(storage.getType())).toList();
+          options.stream().filter(option -> option.canApply(storageRequest.getType())).toList();
 
-      executeOptions(storage, optionsApplied);
+      executeOptions(storageRequest, optionsApplied);
 
-      storage.setFile(null);
+      storageRequest.setFile(null);
       Files.delete(fileConverted.toPath());
-      return storage;
+      return storageRequest;
     } catch (Exception e) {
-      throw new StorageException("Error saving file");
+      throw new StorageException(e.getMessage());
     }
   }
 
-  private static void executeOptions(Storage storage, List<StorageCreationOption> optionsApplied) {
+  private static void executeOptions(
+      StorageRequest storageRequest, List<StorageCreationOption> optionsApplied) {
     for (StorageCreationOption option : optionsApplied) {
       try {
-        option.create(storage);
+        option.create(storageRequest);
       } catch (Exception e) {
-        storage
-            .getCreationFails()
+        storageRequest
+            .getFails()
             .add(
                 MessageError.builder()
                     .message(option.getType().name())
