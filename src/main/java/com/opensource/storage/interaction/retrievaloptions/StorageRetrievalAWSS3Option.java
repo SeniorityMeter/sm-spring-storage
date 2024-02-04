@@ -7,7 +7,9 @@ import com.opensource.storage.valueobject.StorageRequest;
 import com.opensource.storage.valueobject.StorageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class StorageRetrievalAWSS3Option implements StorageRetrievalOption {
   private final AmazonS3 amazonS3;
