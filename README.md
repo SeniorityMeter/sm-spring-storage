@@ -1,4 +1,7 @@
-# OpenSource Spring Lib - Storage
+<img src="https://github.com/SeniorityMeter/spring-sm-starter-bom/assets/36059306/ebfcb364-caea-48eb-972a-2d1ae63f4cdb" alt="logo" width="100"/>
+
+# Seniority Meter
+## Open Source Library - Spring Storage
 
 ## Description
 This library is a simple storage library for Spring Boot applications. It provides a simple way to store and retrieve files from the file system.
