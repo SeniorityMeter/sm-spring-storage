@@ -11,7 +11,7 @@ This library is a simple storage library for Spring Boot applications. It provid
 
 ```xml
 <dependency>
-    <groupId>com.opensource.lib</groupId>
+    <groupId>com.opensourcelibrary.spring</groupId>
     <artifactId>storage</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -49,8 +49,8 @@ Prepare your payload and call the `execute` method.
 ```java
 StorageRequest request = StorageRequest.builder()
     .type(StorageType.AWS_S3)
-    .pathname("path/to/file")
-    .file("filename.extension")
+    .pathname("path/in/s3")
+    .filename("filename.extension")
     .multipartFile(new MockMultipartFil())
     .build();
 
