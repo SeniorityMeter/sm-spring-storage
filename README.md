@@ -3,11 +3,11 @@
 # Seniority Meter
 ## Open Source Library - Spring Storage
 
-## Description
+### Description
 This library is a simple storage library for Spring Boot applications. It provides a simple way to store and retrieve files from the file system.
 
-## How to use
-### 1. Add the following dependency to your `pom.xml` file:
+### How to use
+#### 1. Add the following dependency to your `pom.xml` file:
 
 ```xml
 <dependency>
@@ -17,9 +17,9 @@ This library is a simple storage library for Spring Boot applications. It provid
 </dependency>
 ```
 
-### 2. Add the following properties to your `application.yaml` file:
+#### 2. Add the following properties to your `application.yaml` file:
 
-#### 1 - Configuration for AWS S3:
+##### 1 - Configuration for AWS S3:
 
 ```yaml
 spring:
@@ -37,7 +37,7 @@ spring:
             name: ${AWS_S3_BUCKET_NAME:os-spring-storage-bucket-name}
 ```
 
-### 3. Use the `StorageCreation` to save files:
+#### 3. Use the `StorageCreation` to save files:
 
 Inject the `StorageCreation` bean in your class and use it to save files.
 ```java
