@@ -1,1 +1,2 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.opensourcelibrary.storage.AutoConfigure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.opensourcelibrary.storage.AutoConfigure \
