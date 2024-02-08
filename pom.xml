@@ -40,6 +40,10 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <groupId>org.springframework.boot</groupId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

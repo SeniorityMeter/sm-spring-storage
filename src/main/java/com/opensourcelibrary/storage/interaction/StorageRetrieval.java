@@ -8,9 +8,7 @@ import com.opensourcelibrary.storage.valueobject.StorageResponse;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
 @RequiredArgsConstructor
 public class StorageRetrieval {
   private final List<StorageRetrievalOption> options;
