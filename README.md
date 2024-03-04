@@ -19,7 +19,7 @@ This library is a simple storage library for Spring Boot applications. It provid
 
 #### 2. add scanBasePackages to your SpringBootApplication
 ```java
-@SpringBootApplication(scanBasePackages = {"com.opensourcelibrary", "yout"})
+@SpringBootApplication(scanBasePackages = {"com.opensourcelibrary", "your.package.name.here"})
 ```
 
 #### 3. Add the following properties to your `application.yaml` file:
