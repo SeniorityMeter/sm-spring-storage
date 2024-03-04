@@ -1,4 +1,4 @@
-package com.opensourcelibrary.storage;
+package com.opensourcelibrary.storage.autoconfigure;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.opensourcelibrary.storage.interaction.StorageCreation;

@@ -11,8 +11,7 @@ public class VerifyCanApply {
       final StorageType currentStorageType,
       final StorageType optionStorageType,
       final boolean serviceActive) {
-    final var storageTypeMatch =
-        optionStorageType.equals(currentStorageType) || StorageType.ALL.equals(currentStorageType);
+    final var storageTypeMatch = optionStorageType.equals(currentStorageType);
     return serviceActive && storageTypeMatch;
   }
 }
