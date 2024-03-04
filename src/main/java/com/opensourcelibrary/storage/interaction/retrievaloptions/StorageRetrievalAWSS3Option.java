@@ -22,7 +22,7 @@ public class StorageRetrievalAWSS3Option implements StorageRetrievalOption {
 
   @Override
   public StorageResponse execute(final StorageRequest request, final StorageResponse response) {
-    var key = request.getDomain() + request.getFilename();
+    var key = request.getDomain() + "/" + request.getFilename();
     var obj = amazonS3.getObject(bucketName, key);
     var uri = obj.getObjectContent().getHttpRequest().getURI();
     response.getUrls().put(StorageType.AWS_S3, uri);

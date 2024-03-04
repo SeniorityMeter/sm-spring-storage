@@ -23,7 +23,7 @@ public class StorageCreationAWSS3Option implements StorageCreationOption {
 
   @Override
   public void create(final StorageRequest request) {
-    var key = request.getDomain() + request.getFilename();
+    var key = request.getDomain() + "/" + request.getFilename();
     var awsObj = new PutObjectRequest(bucketName, key, request.getFile());
     amazonS3.putObject(awsObj);
   }

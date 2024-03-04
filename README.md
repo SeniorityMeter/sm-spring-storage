@@ -17,9 +17,14 @@ This library is a simple storage library for Spring Boot applications. It provid
 </dependency>
 ```
 
-#### 2. Add the following properties to your `application.yaml` file:
+#### 2. add scanBasePackages to your SpringBootApplication
+```java
+@SpringBootApplication(scanBasePackages = {"com.opensourcelibrary", "yout"})
+```
 
-##### 1 - Configuration for AWS S3:
+#### 3. Add the following properties to your `application.yaml` file:
+
+##### a - Configuration for AWS S3:
 
 ```yaml
 spring:
@@ -37,7 +42,7 @@ spring:
             name: ${AWS_S3_BUCKET_NAME:os-spring-storage-bucket-name}
 ```
 
-#### 3. Use the `StorageCreation` to save files:
+#### 4. Use the `StorageCreation` to save files:
 
 Inject the `StorageCreation` bean in your class and use it to save files.
 ```java
@@ -48,20 +53,42 @@ Prepare your payload and call the `execute` method.
 
 ```java
 StorageRequest request = StorageRequest.builder()
-    .type(StorageType.AWS_S3)
-    .pathname("path/in/s3")
+    .fileArray(new byte[0])
     .filename("filename.extension")
-    .multipartFile(new MockMultipartFil())
+    .domain("path/on/aws")
+    .type(StorageType.AWS_S3)
     .build();
 
-StorageResponse response = storageCreation.execute(request);
+storageCreation.execute(request);
 ```
 
-The response will contain the URL of the file based of StorageType.
+#### 5. Use the `StorageRetrieval` to get files:
+
+Inject the `StorageRetrieval` bean in your class and use it to get files.
+```java
+private final StorageRetrieval storageRetrieval;
+```
+
+Prepare your payload and call the `execute` method.
+
+```java
+StorageRequest request = StorageRequest.builder()
+    .filename("filename.extension")
+    .domain("path/on/aws")
+    .type(StorageType.AWS_S3)
+    .build();
+
+StorageResponse response = storageRetrieval.execute(request);
+```
+
+The response will contain the URL of the file based of StorageType. And you can get the URL using the following code:
 
 ```java
 response.getUrl().get(StorageType.AWS_S3);
 ```
 
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 

@@ -8,7 +8,9 @@ import com.opensourcelibrary.storage.valueobject.StorageRequest;
 import java.nio.file.Files;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
 public class StorageCreation {
   private final List<StorageCreationOption> options;
