@@ -1,9 +1,8 @@
-package com.opensourcelibrary.storage.interaction.creationoptions;
+package com.opensourcelibrary.storage.interaction.removaloptions;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.opensourcelibrary.storage.enumeration.StorageType;
-import com.opensourcelibrary.storage.interaction.StorageCreation.Input;
+import com.opensourcelibrary.storage.interaction.StorageRemoval.Input;
 import com.opensourcelibrary.storage.utility.VerifyCanApply;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,8 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class StorageCreationAWSS3Option implements StorageCreationOption {
-
+public class StorageRemovalAWSS3Option implements StorageRemovalOption {
   private final AmazonS3 amazonS3;
 
   @Value("${spring.cloud.storage.aws.s3.bucket.name}")
@@ -22,10 +20,8 @@ public class StorageCreationAWSS3Option implements StorageCreationOption {
   private String enabled;
 
   @Override
-  public void create(final Input input) {
-    var key = input.getDomain() + "/" + input.getFilename();
-    var awsObj = new PutObjectRequest(bucketName, key, input.getFile());
-    amazonS3.putObject(awsObj);
+  public void execute(final Input input) {
+    amazonS3.deleteObject(bucketName, input.getKey());
   }
 
   @Override

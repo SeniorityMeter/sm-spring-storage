@@ -9,4 +9,8 @@ public class StorageException extends RuntimeException {
   public static StorageException typeNotSupported() {
     return new StorageException("Storage type not supported");
   }
+
+  public static StorageException with(String message) {
+    return new StorageException(message);
+  }
 }

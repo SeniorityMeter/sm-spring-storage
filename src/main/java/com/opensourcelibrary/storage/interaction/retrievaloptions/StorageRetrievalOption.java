@@ -1,13 +1,11 @@
 package com.opensourcelibrary.storage.interaction.retrievaloptions;
 
 import com.opensourcelibrary.storage.enumeration.StorageType;
-import com.opensourcelibrary.storage.valueobject.StorageRequest;
-import com.opensourcelibrary.storage.valueobject.StorageResponse;
+import com.opensourcelibrary.storage.interaction.StorageRetrieval.Input;
+import com.opensourcelibrary.storage.interaction.StorageRetrieval.Output;
 
 public interface StorageRetrievalOption {
-  StorageResponse execute(final StorageRequest request, final StorageResponse response);
+  Output execute(final Input input);
 
   boolean canApply(final StorageType storageType);
-
-  StorageType getType();
 }

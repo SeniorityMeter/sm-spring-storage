@@ -2,9 +2,9 @@ package com.opensourcelibrary.storage.interaction.retrievaloptions;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.opensourcelibrary.storage.enumeration.StorageType;
+import com.opensourcelibrary.storage.interaction.StorageRetrieval.Input;
+import com.opensourcelibrary.storage.interaction.StorageRetrieval.Output;
 import com.opensourcelibrary.storage.utility.VerifyCanApply;
-import com.opensourcelibrary.storage.valueobject.StorageRequest;
-import com.opensourcelibrary.storage.valueobject.StorageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -21,22 +21,15 @@ public class StorageRetrievalAWSS3Option implements StorageRetrievalOption {
   private String enabled;
 
   @Override
-  public StorageResponse execute(final StorageRequest request, final StorageResponse response) {
-    var key = request.getDomain() + "/" + request.getFilename();
-    var obj = amazonS3.getObject(bucketName, key);
+  public Output execute(final Input input) {
+    var obj = amazonS3.getObject(bucketName, input.getKey());
     var uri = obj.getObjectContent().getHttpRequest().getURI();
-    response.getUrls().put(StorageType.AWS_S3, uri);
-    return response;
+    return Output.builder().uri(uri).build();
   }
 
   @Override
   public boolean canApply(final StorageType storageType) {
     final var awsS3Enabled = Boolean.TRUE.equals(Boolean.valueOf(enabled));
-    return VerifyCanApply.execute(storageType, getType(), awsS3Enabled);
-  }
-
-  @Override
-  public StorageType getType() {
-    return StorageType.AWS_S3;
+    return VerifyCanApply.execute(storageType, StorageType.AWS_S3, awsS3Enabled);
   }
 }

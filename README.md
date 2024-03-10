@@ -6,6 +6,8 @@
 ### Description
 This library is a simple storage library for Spring Boot applications. It provides a simple way to store and retrieve files from the file system.
 
+___
+
 ### How to use
 #### 1. Add the following dependency to your `pom.xml` file:
 
@@ -16,11 +18,13 @@ This library is a simple storage library for Spring Boot applications. It provid
     <version>1.0.0</version>
 </dependency>
 ```
+___
 
 #### 2. add scanBasePackages to your SpringBootApplication
 ```java
 @SpringBootApplication(scanBasePackages = {"com.opensourcelibrary", "your.package.name.here"})
 ```
+___
 
 #### 3. Add the following properties to your `application.yaml` file:
 
@@ -41,6 +45,7 @@ spring:
           bucket:
             name: ${AWS_S3_BUCKET_NAME:os-spring-storage-bucket-name}
 ```
+___
 
 #### 4. Use the `StorageCreation` to save files:
 
@@ -52,15 +57,16 @@ private final StorageCreation storageCreation;
 Prepare your payload and call the `execute` method.
 
 ```java
-StorageRequest request = StorageRequest.builder()
+final var input = StorageCreation.Input.builder()
     .fileArray(new byte[0])
     .filename("filename.extension")
-    .domain("path/on/aws")
+    .domain("path/on/aws") // without "/" at the beginning and at the end
     .type(StorageType.AWS_S3)
     .build();
 
-storageCreation.execute(request);
+var output = storageCreation.execute(input);
 ```
+___
 
 #### 5. Use the `StorageRetrieval` to get files:
 
@@ -72,22 +78,38 @@ private final StorageRetrieval storageRetrieval;
 Prepare your payload and call the `execute` method.
 
 ```java
-StorageRequest request = StorageRequest.builder()
-    .filename("filename.extension")
-    .domain("path/on/aws")
+final var input = StorageRetrieval.Input.builder()
+    .key("path/on/aws/filename.extension")
     .type(StorageType.AWS_S3)
     .build();
 
-StorageResponse response = storageRetrieval.execute(request);
+final var output = storageRetrieval.execute(input);
 ```
 
-The response will contain the URL of the file based of StorageType. And you can get the URL using the following code:
+The response will contain the URI of the file stored. You can get it using the following code:
 
 ```java
-response.getUrl().get(StorageType.AWS_S3);
+output.getUri();
+```
+___
+
+#### 6. Use the `StorageRemoval` to delete files:
+
+Inject the `StorageRemoval` bean in your class and use it to delete files.
+```java
+private final StorageRemoval storageRemoval;
+```
+
+Prepare your payload and call the `execute` method.
+
+```java
+final var input = StorageRemoval.Input.builder()
+    .key("path/on/aws/filename.extension")
+    .type(StorageType.AWS_S3)
+    .build();
+    
+storageRemoval.execute(input);
 ```
 
 ### License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
