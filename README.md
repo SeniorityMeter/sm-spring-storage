@@ -9,14 +9,23 @@ This library is a simple storage library for Spring Boot applications. It provid
 ___
 
 ### How to use
-#### 1. Add the following dependency to your `pom.xml` file:
+#### 1. Add the following dependency and repository to your `pom.xml` file:
 
 ```xml
-<dependency>
-    <groupId>com.opensourcelibrary.spring</groupId>
-    <artifactId>storage</artifactId>
-    <version>1.0.0</version>
-</dependency>
+<dependencies>
+    <dependency>
+        <groupId>com.opensourcelibrary.spring</groupId>
+        <artifactId>storage</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+</dependencies>
+
+<repositories>
+    <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/SeniorityMeter/*</url>
+    </repository>
+</repositories>
 ```
 ___
 
