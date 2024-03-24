@@ -9,7 +9,7 @@ This library is a simple storage library for Spring Boot applications. It provid
 ___
 
 ### How to use
-#### 1. Add the following dependency and repository to your `pom.xml` file:
+#### 1. Add the following dependency to your `pom.xml` file:
 
 ```xml
 <dependencies>
@@ -19,23 +19,10 @@ ___
         <version>1.0.0</version>
     </dependency>
 </dependencies>
-
-<repositories>
-    <repository>
-        <id>github</id>
-        <url>https://maven.pkg.github.com/SeniorityMeter/*</url>
-    </repository>
-</repositories>
 ```
 ___
 
-#### 2. add scanBasePackages to your SpringBootApplication
-```java
-@SpringBootApplication(scanBasePackages = {"com.opensourcelibrary", "your.package.name.here"})
-```
-___
-
-#### 3. Add the following properties to your `application.yaml` file:
+#### 2. Add the following properties to your `application.yaml` file:
 
 ##### a - Configuration for AWS S3:
 
@@ -56,7 +43,7 @@ spring:
 ```
 ___
 
-#### 4. Use the `StorageCreation` to save files:
+#### 3. Use the `StorageCreation` to save files:
 
 Inject the `StorageCreation` bean in your class and use it to save files.
 ```java
@@ -77,7 +64,7 @@ var output = storageCreation.execute(input);
 ```
 ___
 
-#### 5. Use the `StorageRetrieval` to get files:
+#### 4. Use the `StorageRetrieval` to get files:
 
 Inject the `StorageRetrieval` bean in your class and use it to get files.
 ```java
@@ -102,7 +89,7 @@ output.getUri();
 ```
 ___
 
-#### 6. Use the `StorageRemoval` to delete files:
+#### 5. Use the `StorageRemoval` to delete files:
 
 Inject the `StorageRemoval` bean in your class and use it to delete files.
 ```java
