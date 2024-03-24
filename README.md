@@ -39,19 +39,6 @@ spring:
       region: ${AWS_REGION:sa-east-1}
       bucket:
         name: ${AWS_S3_BUCKET_NAME:os-spring-storage-bucket-name}
-      
-  cloud:
-    credentials:
-      aws:
-        access-key: ${AWS_ACCESS_KEY:os-spring-storage-access-key}
-        secret-key: ${AWS_SECRET_KEY:os-spring-storage-secret-key}
-    storage:
-      aws:
-        s3:
-          enabled: true
-          region: ${AWS_REGION:sa-east-1}
-          bucket:
-            name: ${AWS_S3_BUCKET_NAME:os-spring-storage-bucket-name}
 ```
 ___
 
