@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 public class StorageRetrievalAWSS3Option implements StorageRetrievalOption {
   private final AmazonS3 amazonS3;
 
-  @Value("${spring.cloud.storage.aws.s3.bucket.name}")
+  @Value("${spring.storage.aws-s3.bucket.name}")
   private String bucketName;
 
-  @Value("${spring.cloud.storage.aws.s3.enabled}")
+  @Value("${spring.storage.aws-s3.enabled}")
   private String enabled;
 
   @Override
