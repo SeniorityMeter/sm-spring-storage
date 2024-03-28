@@ -1,7 +1,7 @@
 <img src="https://github.com/SeniorityMeter/spring-sm-starter-bom/assets/36059306/ebfcb364-caea-48eb-972a-2d1ae63f4cdb" alt="logo" width="100"/>
 
 # Seniority Meter
-## Open Source Library - Spring Storage
+## Spring Storage
 
 ### Description
 This library is a simple storage library for Spring Boot applications. It provides a simple way to store and retrieve files from the file system.
@@ -14,7 +14,7 @@ ___
 ```xml
 <dependencies>
     <dependency>
-        <groupId>com.opensourcelibrary.spring</groupId>
+        <groupId>com.senioritymeter.spring</groupId>
         <artifactId>storage</artifactId>
         <version>1.0.0</version>
     </dependency>
@@ -31,14 +31,14 @@ spring:
   cloud:
     aws:
       credentials:
-        access-key: ${AWS_ACCESS_KEY:os-spring-storage-access-key}
-        secret-key: ${AWS_SECRET_KEY:os-spring-storage-secret-key}
+        access-key: ${AWS_ACCESS_KEY:sm-spring-storage-access-key}
+        secret-key: ${AWS_SECRET_KEY:sm-spring-storage-secret-key}
   storage:
     aws-s3:
       enabled: true
       region: ${AWS_REGION:sa-east-1}
       bucket:
-        name: ${AWS_S3_BUCKET_NAME:os-spring-storage-bucket-name}
+        name: ${AWS_S3_BUCKET_NAME:sm-spring-storage-bucket-name}
 ```
 ___
 

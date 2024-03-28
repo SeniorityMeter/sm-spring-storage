@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.opensourcelibrary.spring</groupId>
+    <groupId>com.senioritymeter.spring</groupId>
     <artifactId>storage</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <parent>
-        <groupId>com.opensourcelibrary</groupId>
+        <groupId>com.senioritymeter</groupId>
         <artifactId>parent</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -17,8 +17,8 @@
     <distributionManagement>
         <repository>
             <id>github</id>
-            <name>osl-spring-storage</name>
-            <url>https://maven.pkg.github.com/SeniorityMeter/osl-spring-storage</url>
+            <name>sm-spring-storage</name>
+            <url>https://maven.pkg.github.com/SeniorityMeter/sm-spring-storage</url>
         </repository>
     </distributionManagement>
 
