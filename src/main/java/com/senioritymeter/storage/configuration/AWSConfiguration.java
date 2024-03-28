@@ -1,4 +1,4 @@
-package com.opensourcelibrary.storage.configuration;
+package com.senioritymeter.storage.configuration;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

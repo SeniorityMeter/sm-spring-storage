@@ -1,9 +1,9 @@
-package com.opensourcelibrary.storage.interaction;
+package com.senioritymeter.storage.interaction;
 
-import com.opensourcelibrary.storage.enumeration.StorageType;
-import com.opensourcelibrary.storage.exception.StorageException;
-import com.opensourcelibrary.storage.interaction.creationoptions.StorageCreationOption;
-import com.opensourcelibrary.storage.utility.FileConverter;
+import com.senioritymeter.storage.enumeration.StorageType;
+import com.senioritymeter.storage.exception.StorageException;
+import com.senioritymeter.storage.interaction.creationoptions.StorageCreationOption;
+import com.senioritymeter.storage.utility.FileConverter;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URI;

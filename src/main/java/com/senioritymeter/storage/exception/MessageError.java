@@ -1,4 +1,4 @@
-package com.opensourcelibrary.storage.exception;
+package com.senioritymeter.storage.exception;
 
 import lombok.Builder;
 import lombok.Data;

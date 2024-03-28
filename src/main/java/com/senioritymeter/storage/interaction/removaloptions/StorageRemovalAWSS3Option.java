@@ -1,17 +1,16 @@
-package com.opensourcelibrary.storage.interaction.retrievaloptions;
+package com.senioritymeter.storage.interaction.removaloptions;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.opensourcelibrary.storage.enumeration.StorageType;
-import com.opensourcelibrary.storage.interaction.StorageRetrieval.Input;
-import com.opensourcelibrary.storage.interaction.StorageRetrieval.Output;
-import com.opensourcelibrary.storage.utility.VerifyCanApply;
+import com.senioritymeter.storage.enumeration.StorageType;
+import com.senioritymeter.storage.interaction.StorageRemoval.Input;
+import com.senioritymeter.storage.utility.VerifyCanApply;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class StorageRetrievalAWSS3Option implements StorageRetrievalOption {
+public class StorageRemovalAWSS3Option implements StorageRemovalOption {
   private final AmazonS3 amazonS3;
 
   @Value("${spring.storage.aws-s3.bucket.name}")
@@ -21,10 +20,8 @@ public class StorageRetrievalAWSS3Option implements StorageRetrievalOption {
   private String enabled;
 
   @Override
-  public Output execute(final Input input) {
-    var obj = amazonS3.getObject(bucketName, input.getKey());
-    var uri = obj.getObjectContent().getHttpRequest().getURI();
-    return Output.builder().uri(uri).build();
+  public void execute(final Input input) {
+    amazonS3.deleteObject(bucketName, input.getKey());
   }
 
   @Override

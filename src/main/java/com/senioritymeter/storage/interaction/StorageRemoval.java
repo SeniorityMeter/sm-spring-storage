@@ -1,8 +1,8 @@
-package com.opensourcelibrary.storage.interaction;
+package com.senioritymeter.storage.interaction;
 
-import com.opensourcelibrary.storage.enumeration.StorageType;
-import com.opensourcelibrary.storage.exception.StorageException;
-import com.opensourcelibrary.storage.interaction.removaloptions.StorageRemovalOption;
+import com.senioritymeter.storage.enumeration.StorageType;
+import com.senioritymeter.storage.exception.StorageException;
+import com.senioritymeter.storage.interaction.removaloptions.StorageRemovalOption;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package com.opensourcelibrary.storage.utility;
+package com.senioritymeter.storage.utility;
 
-import com.opensourcelibrary.storage.exception.StorageException;
+import com.senioritymeter.storage.exception.StorageException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
