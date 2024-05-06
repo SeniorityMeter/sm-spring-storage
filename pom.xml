@@ -3,16 +3,40 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.senioritymeter.spring</groupId>
+    <groupId>br.com.senioritymeter.spring</groupId>
     <artifactId>storage</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
+    <name>Seniority Meter Storage</name>
+    <description>A simple storage library for Spring Boot applications.</description>
+    <url>https://github.com/SeniorityMeter/sm-spring-parent</url>
+
     <parent>
-        <groupId>com.senioritymeter</groupId>
+        <groupId>br.com.senioritymeter</groupId>
         <artifactId>parent</artifactId>
         <version>1.0.0</version>
     </parent>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Luiz Fernandes de Oliveira</name>
+            <email>luizfernandesoliveiraoficial@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/SeniorityMeter/sm-spring-storage.git</connection>
+        <developerConnection>scm:git:ssh://github.com/SeniorityMeter/sm-spring-storage.git</developerConnection>
+        <url>https://github.com/SeniorityMeter/sm-spring-storage/tree/master</url>
+    </scm>
 
     <distributionManagement>
         <repository>
@@ -21,6 +45,13 @@
             <url>https://maven.pkg.github.com/SeniorityMeter/sm-spring-storage</url>
         </repository>
     </distributionManagement>
+
+    <properties>
+        <java.version>${java.version}</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <repositories>
         <repository>

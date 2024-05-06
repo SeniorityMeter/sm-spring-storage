@@ -42,13 +42,13 @@ public class StorageCreation {
     }
   }
 
-  private Output executeOption(final Input request, final StorageCreationOption option) {
-    option.create(request);
+  private Output executeOption(final Input input, final StorageCreationOption option) {
+    option.create(input);
 
     var retrievalInput =
         StorageRetrieval.Input.builder()
-            .type(request.getType())
-            .key(request.getDomain() + "/" + request.getFilename())
+            .type(input.getType())
+            .key(STR."\{input.getDomain()}/\{input.getFilename()}")
             .build();
 
     var retrievalOutput = storageRetrieval.execute(retrievalInput);

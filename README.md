@@ -14,7 +14,7 @@ ___
 ```xml
 <dependencies>
     <dependency>
-        <groupId>com.senioritymeter.spring</groupId>
+        <groupId>br.com.senioritymeter.spring</groupId>
         <artifactId>storage</artifactId>
         <version>1.0.0</version>
     </dependency>
