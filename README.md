@@ -14,7 +14,7 @@ ___
 ```xml
 <dependencies>
     <dependency>
-        <groupId>br.com.senioritymeter.spring</groupId>
+        <groupId>br.com.senioritymeter</groupId>
         <artifactId>storage</artifactId>
         <version>1.0.0</version>
     </dependency>
@@ -22,7 +22,14 @@ ___
 ```
 ___
 
-#### 2. Add the following properties to your `application.yaml` file:
+#### 2. add scanBasePackages to your SpringBootApplication
+```java
+@SpringBootApplication(scanBasePackages = {"br.com.senioritymeter", "your.package.name.here"})
+```
+
+___
+
+#### 3. Add the following properties to your `application.yaml` file:
 
 ##### a - Configuration for AWS S3:
 
@@ -42,7 +49,7 @@ spring:
 ```
 ___
 
-#### 3. Use the `StorageCreation` to save files:
+#### 4. Use the `StorageCreation` to save files:
 
 Inject the `StorageCreation` bean in your class and use it to save files.
 ```java
@@ -63,7 +70,7 @@ var output = storageCreation.execute(input);
 ```
 ___
 
-#### 4. Use the `StorageRetrieval` to get files:
+#### 5. Use the `StorageRetrieval` to get files:
 
 Inject the `StorageRetrieval` bean in your class and use it to get files.
 ```java
@@ -88,7 +95,7 @@ output.getUri();
 ```
 ___
 
-#### 5. Use the `StorageRemoval` to delete files:
+#### 6. Use the `StorageRemoval` to delete files:
 
 Inject the `StorageRemoval` bean in your class and use it to delete files.
 ```java
@@ -105,6 +112,3 @@ final var input = StorageRemoval.Input.builder()
     
 storageRemoval.execute(input);
 ```
-
-### License
-
