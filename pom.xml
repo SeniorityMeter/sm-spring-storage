@@ -37,13 +37,6 @@
         <url>https://github.com/SeniorityMeter/sm-spring-storage/tree/master</url>
     </scm>
 
-    <properties>
-        <java.version>${java.version}</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
