@@ -1,4 +1,4 @@
-package com.senioritymeter.storage.exception;
+package br.com.senioritymeter.storage.exception;
 
 public class StorageException extends RuntimeException {
 

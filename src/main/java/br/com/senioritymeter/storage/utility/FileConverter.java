@@ -1,6 +1,6 @@
-package com.senioritymeter.storage.utility;
+package br.com.senioritymeter.storage.utility;
 
-import com.senioritymeter.storage.exception.StorageException;
+import br.com.senioritymeter.storage.exception.StorageException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -1,6 +1,6 @@
-package com.senioritymeter.storage.utility;
+package br.com.senioritymeter.storage.utility;
 
-import com.senioritymeter.storage.enumeration.StorageType;
+import br.com.senioritymeter.storage.enumeration.StorageType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

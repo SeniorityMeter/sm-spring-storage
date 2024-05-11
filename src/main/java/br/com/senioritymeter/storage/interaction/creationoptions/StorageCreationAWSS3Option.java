@@ -1,16 +1,18 @@
-package com.senioritymeter.storage.interaction.removaloptions;
+package br.com.senioritymeter.storage.interaction.creationoptions;
 
+import br.com.senioritymeter.storage.enumeration.StorageType;
+import br.com.senioritymeter.storage.interaction.StorageCreation.Input;
+import br.com.senioritymeter.storage.utility.VerifyCanApply;
 import com.amazonaws.services.s3.AmazonS3;
-import com.senioritymeter.storage.enumeration.StorageType;
-import com.senioritymeter.storage.interaction.StorageRemoval.Input;
-import com.senioritymeter.storage.utility.VerifyCanApply;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class StorageRemovalAWSS3Option implements StorageRemovalOption {
+public class StorageCreationAWSS3Option implements StorageCreationOption {
+
   private final AmazonS3 amazonS3;
 
   @Value("${spring.storage.aws-s3.bucket.name}")
@@ -20,8 +22,10 @@ public class StorageRemovalAWSS3Option implements StorageRemovalOption {
   private String enabled;
 
   @Override
-  public void execute(final Input input) {
-    amazonS3.deleteObject(bucketName, input.getKey());
+  public void create(final Input input) {
+    var key = input.getDomain() + "/" + input.getFilename();
+    var awsObj = new PutObjectRequest(bucketName, key, input.getFile());
+    amazonS3.putObject(awsObj);
   }
 
   @Override
