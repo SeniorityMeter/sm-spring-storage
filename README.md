@@ -33,7 +33,7 @@ ___
     <dependency>
         <groupId>br.com.senioritymeter</groupId>
         <artifactId>storage</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
     </dependency>
 </dependencies>
 ```

@@ -48,7 +48,7 @@ public class StorageCreation {
     var retrievalInput =
         StorageRetrieval.Input.builder()
             .type(input.getType())
-            .key(input.getDomain() + input.getFilename())
+            .key(input.getDomain() + "/" + input.getFilename())
             .build();
 
     var retrievalOutput = storageRetrieval.execute(retrievalInput);
