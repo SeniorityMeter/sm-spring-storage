@@ -4,7 +4,6 @@ import br.com.senioritymeter.storage.enumeration.StorageType;
 import br.com.senioritymeter.storage.interaction.StorageRemoval.Input;
 import com.amazonaws.services.s3.AmazonS3;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
