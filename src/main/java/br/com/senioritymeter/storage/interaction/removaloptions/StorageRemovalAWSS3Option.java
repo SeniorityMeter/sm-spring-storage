@@ -14,12 +14,9 @@ import org.springframework.stereotype.Component;
 public class StorageRemovalAWSS3Option implements StorageRemovalOption {
   private final AmazonS3 amazonS3;
 
-  @Value("${spring.storage.aws-s3.bucket.name}")
-  private String bucketName;
-
   @Override
   public void execute(final Input input) {
-    amazonS3.deleteObject(bucketName, input.getKey());
+    amazonS3.deleteObject(input.getBucket(), input.getKey());
   }
 
   @Override

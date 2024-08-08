@@ -32,6 +32,7 @@ public class StorageRemoval {
   @Builder
   public static class Input {
     private String key;
+    private String bucket;
     private StorageType type;
   }
 }

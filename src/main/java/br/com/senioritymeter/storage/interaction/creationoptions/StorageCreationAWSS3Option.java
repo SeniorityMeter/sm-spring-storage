@@ -16,13 +16,10 @@ public class StorageCreationAWSS3Option implements StorageCreationOption {
 
   private final AmazonS3 amazonS3;
 
-  @Value("${spring.storage.aws-s3.bucket.name}")
-  private String bucketName;
-
   @Override
   public void create(final Input input) {
     var key = input.getDomain() + "/" + input.getFilename();
-    var awsObj = new PutObjectRequest(bucketName, key, input.getFile());
+    var awsObj = new PutObjectRequest(input.getBucket(), key, input.getFile());
     amazonS3.putObject(awsObj);
   }
 

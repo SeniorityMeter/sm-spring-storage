@@ -15,7 +15,7 @@ ___
 <parent>
     <groupId>br.com.senioritymeter</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </parent>
 ```
 ___
@@ -33,7 +33,7 @@ ___
     <dependency>
         <groupId>br.com.senioritymeter</groupId>
         <artifactId>storage</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.6</version>
     </dependency>
 </dependencies>
 ```
@@ -55,8 +55,6 @@ spring:
     aws-s3:
       enabled: true
       region: ${AWS_REGION:sa-east-1}
-      bucket:
-        name: ${AWS_S3_BUCKET_NAME:sm-spring-storage-bucket-name}
 ```
 ___
 
@@ -75,6 +73,7 @@ final var input = StorageCreation.Input.builder()
     .filename("filename.extension")
     .domain("path/on/aws") // without "/" at the beginning and at the end
     .type(StorageType.AWS_S3)
+    .bucket("bucket-name")
     .build();
 
 var output = storageCreation.execute(input);
@@ -94,6 +93,7 @@ Prepare your payload and call the `execute` method.
 final var input = StorageRetrieval.Input.builder()
     .key("path/on/aws/filename.extension")
     .type(StorageType.AWS_S3)
+    .bucket("bucket-name")
     .build();
 
 final var output = storageRetrieval.execute(input);
@@ -119,6 +119,7 @@ Prepare your payload and call the `execute` method.
 final var input = StorageRemoval.Input.builder()
     .key("path/on/aws/filename.extension")
     .type(StorageType.AWS_S3)
+    .bucket("bucket-name")    
     .build();
     
 storageRemoval.execute(input);

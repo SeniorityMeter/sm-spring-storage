@@ -63,6 +63,7 @@ public class StorageCreation {
     private StorageType type;
     private String domain;
     private String filename;
+    private String bucket;
     @Setter private File file;
   }
 

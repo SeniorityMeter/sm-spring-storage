@@ -15,12 +15,9 @@ import org.springframework.stereotype.Component;
 public class StorageRetrievalAWSS3Option implements StorageRetrievalOption {
   private final AmazonS3 amazonS3;
 
-  @Value("${spring.storage.aws-s3.bucket.name}")
-  private String bucketName;
-
   @Override
   public Output execute(final Input input) {
-    var obj = amazonS3.getObject(bucketName, input.getKey());
+    var obj = amazonS3.getObject(input.getBucket(), input.getKey());
     var uri = obj.getObjectContent().getHttpRequest().getURI();
     return Output.builder().uri(uri).build();
   }

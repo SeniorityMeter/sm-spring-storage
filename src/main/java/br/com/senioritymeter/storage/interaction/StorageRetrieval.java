@@ -33,6 +33,7 @@ public class StorageRetrieval {
   @Builder
   public static class Input {
     private StorageType type;
+    private String bucket;
     private String key;
   }
 
