@@ -33,7 +33,7 @@ jobs:
           Expire-Date: 1d
           EOF
           gpg --batch --gen-key gen-key-script
-          echo "GPG_KEY_ID=$(gpg --list-keys --keyid-format LONG | grep pub | awk '{print $2}' | cut -d'/' -f2)
+          GPG_KEY_ID=$(gpg --list-keys --keyid-format LONG | grep pub | awk '{print $2}' | cut -d'/' -f2)
           echo "GPG_KEY_ID=$GPG_KEY_ID" >> $GITHUB_ENV
       - name: Build and publish to Maven Central
         env:
