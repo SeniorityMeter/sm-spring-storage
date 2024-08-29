@@ -43,4 +43,4 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
           mvn clean verify -Dgpg.keyname=$GPG_KEY_ID -Dgpg.passphrase=$GPG_PASSPHRASE
-          mvn deploy -P release -Dgpg.executable=gpg --settings .github/maven-settings.xml
+          mvn deploy -Dgpg.executable=gpg --settings .github/maven-settings.xml
