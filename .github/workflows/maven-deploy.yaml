@@ -35,6 +35,9 @@ jobs:
           gpg --batch --gen-key gen-key-script
           GPG_KEY_ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2)
           echo "GPG_KEY_ID=$GPG_KEY_ID" >> $GITHUB_ENV
+      - name: Export and send GPG public key to keyserver
+        run: |
+          gpg --keyserver hkps://keys.openpgp.org --send-keys $GPG_KEY_ID
       - name: Build and publish to Maven Central
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
