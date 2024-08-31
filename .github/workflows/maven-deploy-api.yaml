@@ -65,15 +65,19 @@ jobs:
       - name: Wait for deployment to be processed
         run: |
           while true; do
-            STATUS=$(curl -s -H "Authorization Basic $CENTRAL_API_TOKEN" "https://central.sonatype.com/api/v1/publisher/status/$DEPLOYMENT_ID" | jq -r '.deploymentState')
+            STATUS=$(curl -s -H "Authorization: Basic $CENTRAL_API_TOKEN" "https://central.sonatype.com/api/v1/publisher/status/$DEPLOYMENT_ID" | jq -r '.deploymentState')
             if [ "$STATUS" == "VALIDATED" ]; then
+              echo "Deployment validated successfully"
               break
-            elif [ "$STATUS" == "VALIDATED" ]; then
-                echo "Deployment failed"
-                exit 1
+            elif [ "$STATUS" == "FAILED" ]; then
+              echo "Deployment failed"
+              exit 1
+            else
+              echo "Current status: $STATUS"
             fi
             sleep 2
           done
+        shell: /usr/bin/bash -e {0}
 
 #      - name: Publish artifacts on Maven Central
 #        env:
