@@ -100,7 +100,7 @@
     </build>
     <profiles>
         <profile>
-            <id>release</id>
+            <id>maven-central</id>
             <build>
                 <plugins>
                     <plugin>
