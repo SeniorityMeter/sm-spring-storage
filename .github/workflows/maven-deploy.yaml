@@ -37,7 +37,7 @@ jobs:
           echo "GPG_KEY_ID=$GPG_KEY_ID" >> $GITHUB_ENV
       - name: Export and send GPG public key to keyserver
         run: |
-          gpg --keyserver hkps://keys.openpgp.org --send-keys $GPG_KEY_ID
+          gpg --keyserver keyserver.ubuntu.com --send-keys $GPG_KEY_ID
       - name: Build and publish to Maven Central
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
