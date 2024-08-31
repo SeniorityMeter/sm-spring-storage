@@ -50,11 +50,11 @@ jobs:
       - name: Create bundle.zip
         run: |
           mkdir -p target/bundle
-          cp target/*.jar target/bundle/
-          cp target/*.pom target/bundle/
-          cp target/*.asc target/bundle/
-          cp target/*.md5 target/bundle/
-          cp target/*.sha1 target/bundle/
+          cp target/*.jar target/bundle/ || true
+          cp target/*.pom target/bundle/ || true
+          cp target/*.asc target/bundle/ || true
+          cp target/*.md5 target/bundle/ || true
+          cp target/*.sha1 target/bundle/ || true
           cd target/bundle
           zip -r ../bundle.zip .
 
