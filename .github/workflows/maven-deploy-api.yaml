@@ -59,25 +59,35 @@ jobs:
         env:
           CENTRAL_API_TOKEN: ${{ secrets.CENTRAL_API_TOKEN }}
         run: |
-          RESPONSE=$(curl -s -F "file=@target/bundle.zip" -H "Authorization: Basic $CENTRAL_API_TOKEN" "https://central.sonatype.com/api/v1/publisher/upload")
-          DEPLOYMENT_ID=$(echo $RESPONSE | jq -r '.deploymentId')
+          DEPLOYMENT_ID=$(curl -s -X POST \
+          'https://central.sonatype.com/api/v1/publisher/upload?name=storage&publishingType=USER_MANAGED' \
+          -H 'accept: text/plain' \
+          -H "Authorization: Basic $CENTRAL_API_TOKEN" \
+          -H 'Content-Type: multipart/form-data' \
+          -F 'bundle=@target/bundle.zip' | tr -d '\r')
           echo "DEPLOYMENT_ID=$DEPLOYMENT_ID" >> $GITHUB_ENV
-      - name: Wait for deployment to be processed
+
+      - name: Check Deployment Status
+        env:
+          CENTRAL_API_TOKEN: ${{ secrets.CENTRAL_API_TOKEN }}
+          DEPLOYMENT_ID: ${{ env.DEPLOYMENT_ID }}
         run: |
           while true; do
-            STATUS=$(curl -s -H "Authorization: Basic $CENTRAL_API_TOKEN" "https://central.sonatype.com/api/v1/publisher/status/$DEPLOYMENT_ID" | jq -r '.deploymentState')
+            STATUS=$(curl -s -X POST \
+              "https://central.sonatype.com/api/v1/publisher/status?id=$DEPLOYMENT_ID" \
+              -H 'accept: application/json' \
+              -H "Authorization: Basic $CENTRAL_API_TOKEN" | jq -r '.deploymentState')
             if [ "$STATUS" == "VALIDATED" ]; then
-              echo "Deployment validated successfully"
+              echo "Deployment validated successfully."
               break
             elif [ "$STATUS" == "FAILED" ]; then
-              echo "Deployment failed"
+              echo "Deployment failed."
               exit 1
             else
-              echo "Current status: $STATUS"
+              echo "Current status: $STATUS. Retrying in 10 seconds..."
+              sleep 10
             fi
-            sleep 2
           done
-        shell: /usr/bin/bash -e {0}
 
 #      - name: Publish artifacts on Maven Central
 #        env:
