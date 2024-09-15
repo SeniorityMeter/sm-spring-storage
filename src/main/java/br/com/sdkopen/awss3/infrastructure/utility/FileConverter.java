@@ -1,6 +1,6 @@
-package br.com.senioritymeter.storage.utility;
+package br.com.sdkopen.awss3.infrastructure.utility;
 
-import br.com.senioritymeter.storage.exception.StorageException;
+import br.com.sdkopen.awss3.infrastructure.exception.SDKOpenAwsS3Exception;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class FileConverter {
       fos.write(file.readAllBytes());
     } catch (IOException e) {
       Files.delete(fileConverted.toPath());
-      throw new StorageException("Error on file conversion");
+      throw new SDKOpenAwsS3Exception("Error on file conversion");
     }
 
     return fileConverted;

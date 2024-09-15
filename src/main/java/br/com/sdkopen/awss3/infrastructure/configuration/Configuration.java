@@ -1,4 +1,4 @@
-package br.com.senioritymeter.storage.configuration;
+package br.com.sdkopen.awss3.infrastructure.configuration;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -7,19 +7,18 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@ConditionalOnProperty(name = "spring.storage.aws-s3.enabled", havingValue = "true")
-public class AWSConfiguration {
+@org.springframework.context.annotation.Configuration
+@ConditionalOnProperty(name = "sdkopen.aws-s3.enabled", havingValue = "true")
+public class Configuration {
 
-  @Value("${spring.cloud.credentials.aws.access-key}")
+  @Value("${sdkopen.cloud.credentials.aws.access-key}")
   private String accessKey;
 
-  @Value("${spring.cloud.credentials.aws.secret-key}")
+  @Value("${sdkopen.cloud.credentials.aws.secret-key}")
   private String secretKey;
 
-  @Value("${spring.storage.aws-s3.region}")
+  @Value("${sdkopen.aws-s3.region}")
   private String region;
 
   @Bean

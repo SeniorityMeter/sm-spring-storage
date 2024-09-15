@@ -1,10 +1,10 @@
-<img src="https://github.com/SeniorityMeter/spring-sm-starter-bom/assets/36059306/ebfcb364-caea-48eb-972a-2d1ae63f4cdb" alt="logo" width="100"/>
+<img src="https://github.com/user-attachments/assets/801ecb0c-455c-41a8-bb52-15d4318f2e78" alt="logo" width="100" style="border-radius: 50%;" />
 
-# Seniority Meter
-## Spring Storage
+# SDK Open
+## Spring AWS S3
 
 ### Description
-This is a simple storage SDK for Spring Boot applications. It provides a simple way to store and retrieve files from the file system.
+A simple AWS S3 SDK for Spring Boot applications.
 
 ___
 
@@ -13,16 +13,16 @@ ___
 
 ```xml
 <parent>
-    <groupId>br.com.senioritymeter</groupId>
+    <groupId>br.com.sdkopen</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.0</version>
 </parent>
 ```
 ___
 
 #### 2. add scanBasePackages to your SpringBootApplication
 ```java
-@SpringBootApplication(scanBasePackages = {"br.com.senioritymeter", "your.package.name.here"})
+@SpringBootApplication(scanBasePackages = {"br.com.sdkopen", "your.package.name.here"})
 ```
 ___
 
@@ -31,9 +31,9 @@ ___
 ```xml
 <dependencies>
     <dependency>
-        <groupId>br.com.senioritymeter</groupId>
-        <artifactId>storage</artifactId>
-        <version>1.0.7</version>
+        <groupId>br.com.sdkopen</groupId>
+        <artifactId>aws-s3</artifactId>
+        <version>1.0.0</version>
     </dependency>
 </dependencies>
 ```
@@ -42,61 +42,58 @@ ___
 
 #### 4. Add the following properties to your `application.yaml` file:
 
-##### a - Configuration for AWS S3:
+##### a - Configuration:
 
 ```yaml
-spring:
+sdkopen:
   cloud:
     aws:
       credentials:
         access-key: ${AWS_ACCESS_KEY:sm-spring-storage-access-key}
         secret-key: ${AWS_SECRET_KEY:sm-spring-storage-secret-key}
-  storage:
-    aws-s3:
-      enabled: true
-      region: ${AWS_REGION:sa-east-1}
+  aws-s3:
+    enabled: true
+    region: ${AWS_REGION:sa-east-1}
 ```
 ___
 
-#### 5. Use the `StorageCreation` to save files:
+#### 5. Use the `PutObject` to upload files in AWS S3:
 
-Inject the `StorageCreation` bean in your class and use it to save files.
+Inject the `PutObject` bean in your class and use it to save files.
 ```java
-private final StorageCreation storageCreation;
+private final PutObject putObject;
 ```
 
 Prepare your payload and call the `execute` method.
 
 ```java
-final var input = StorageCreation.Input.builder()
-    .fileArray(new byte[0])
+final var input = PutObject.Input.builder()
+    .file(new byte[0])
     .filename("filename.extension")
-    .domain("path/on/aws") // without "/" at the beginning and at the end
-    .type(StorageType.AWS_S3)
+    .key("path/on/aws/filename.extension") // without "/" at the beginning and at the end
     .bucket("bucket-name")
     .build();
 
-var output = storageCreation.execute(input);
+putObject.execute(input);
 ```
 ___
 
-#### 6. Use the `StorageRetrieval` to get files:
+#### 6. Use the `GetObject` to get files in AWS S3:
 
-Inject the `StorageRetrieval` bean in your class and use it to get files.
+Inject the `GetObject` bean in your class and use it to get files.
 ```java
-private final StorageRetrieval storageRetrieval;
+private final GetObject getObject;
 ```
 
 Prepare your payload and call the `execute` method.
 
 ```java
-final var input = StorageRetrieval.Input.builder()
+final var input = GetObject.Input.builder()
     .key("path/on/aws/filename.extension")
-    .type(StorageType.AWS_S3)
     .bucket("bucket-name")
     .build();
 
-final var output = storageRetrieval.execute(input);
+final var output = getObject.execute(input);
 ```
 
 The response will contain the URI of the file stored. You can get it using the following code:
@@ -106,21 +103,20 @@ output.getUri();
 ```
 ___
 
-#### 7. Use the `StorageRemoval` to delete files:
+#### 7. Use the `DeleteObject` to delete files in AWS S3:
 
-Inject the `StorageRemoval` bean in your class and use it to delete files.
+Inject the `DeleteObject` bean in your class and use it to delete files.
 ```java
-private final StorageRemoval storageRemoval;
+private final DeleteObject deleteObject;
 ```
 
 Prepare your payload and call the `execute` method.
 
 ```java
-final var input = StorageRemoval.Input.builder()
+final var input = DeleteObject.Input.builder()
     .key("path/on/aws/filename.extension")
-    .type(StorageType.AWS_S3)
     .bucket("bucket-name")    
     .build();
     
-storageRemoval.execute(input);
+deleteObject.execute(input);
 ```
