@@ -15,7 +15,7 @@
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A simple AWS S3 SDK for Spring Boot applications.</description>
-    <url>https://github.com/sdkopen/sdkopen-spring-storage</url>
+    <url>https://github.com/sdkopen/sdkopen-spring-aws-s3</url>
 
     <licenses>
         <license>
@@ -32,9 +32,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/sdkopen/sdkopen-spring-storage.git</connection>
-        <developerConnection>scm:git:ssh://github.com/sdkopen/sdkopen-spring-storage.git</developerConnection>
-        <url>https://github.com/sdkopen/sdkopen-spring-storage/tree/master</url>
+        <connection>scm:git:git://github.com/sdkopen/sdkopen-spring-aws-s3.git</connection>
+        <developerConnection>scm:git:ssh://github.com/sdkopen/sdkopen-spring-aws-s3.git</developerConnection>
+        <url>https://github.com/sdkopen/sdkopen-spring-aws-s3/tree/master</url>
     </scm>
 
     <dependencies>
