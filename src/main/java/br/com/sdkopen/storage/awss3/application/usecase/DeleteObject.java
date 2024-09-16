@@ -1,4 +1,4 @@
-package br.com.sdkopen.awss3.application.usecase;
+package br.com.sdkopen.storage.awss3.application.usecase;
 
 import com.amazonaws.services.s3.AmazonS3;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "spring.aws-s3.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "spring.storage.aws-s3.enabled", havingValue = "true")
 public class DeleteObject {
   private final AmazonS3 amazonS3;
 

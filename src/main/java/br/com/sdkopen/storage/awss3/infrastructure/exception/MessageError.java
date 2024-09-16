@@ -1,4 +1,4 @@
-package br.com.sdkopen.awss3.infrastructure.exception;
+package br.com.sdkopen.storage.awss3.infrastructure.exception;
 
 import lombok.Builder;
 import lombok.Data;

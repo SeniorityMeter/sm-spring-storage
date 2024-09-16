@@ -1,7 +1,7 @@
-package br.com.sdkopen.awss3.application.usecase;
+package br.com.sdkopen.storage.awss3.application.usecase;
 
-import br.com.sdkopen.awss3.infrastructure.exception.SDKOpenAwsS3Exception;
-import br.com.sdkopen.awss3.infrastructure.utility.FileConverter;
+import br.com.sdkopen.storage.awss3.infrastructure.exception.SDKOpenAwsS3Exception;
+import br.com.sdkopen.storage.awss3.infrastructure.utility.FileConverter;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import java.io.InputStream;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "spring.aws-s3.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "spring.storage.aws-s3.enabled", havingValue = "true")
 public class PutObject {
   private final AmazonS3 amazonS3;
 
@@ -23,7 +23,7 @@ public class PutObject {
       var awsObj = new PutObjectRequest(input.getBucket(), input.getKey(), file);
       amazonS3.putObject(awsObj);
     } catch (Exception e) {
-      throw new SDKOpenAwsS3Exception(e.getMessage());
+      throw SDKOpenAwsS3Exception.with(e.getMessage());
     }
   }
 

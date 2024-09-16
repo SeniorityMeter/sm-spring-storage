@@ -1,10 +1,10 @@
 <img src="https://github.com/user-attachments/assets/801ecb0c-455c-41a8-bb52-15d4318f2e78" alt="logo" width="100" style="border-radius: 50%;" />
 
 # SDK Open
-## Spring AWS S3
+## Spring Storage AWS S3
 
 ### Description
-A simple AWS S3 SDK for Spring Boot applications.
+A simple Storage AWS S3 SDK for Spring Boot applications.
 
 ___
 
@@ -32,7 +32,7 @@ ___
 <dependencies>
     <dependency>
         <groupId>br.com.sdkopen</groupId>
-        <artifactId>aws-s3</artifactId>
+        <artifactId>storage-aws-s3</artifactId>
         <version>1.0.0</version>
     </dependency>
 </dependencies>
@@ -51,9 +51,10 @@ sdkopen:
       credentials:
         access-key: ${AWS_ACCESS_KEY:sm-spring-storage-access-key}
         secret-key: ${AWS_SECRET_KEY:sm-spring-storage-secret-key}
-  aws-s3:
-    enabled: true
-    region: ${AWS_REGION:sa-east-1}
+  storage:
+    aws-s3:
+      enabled: true
+      region: ${AWS_REGION:sa-east-1}
 ```
 ___
 

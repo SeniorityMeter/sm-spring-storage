@@ -1,4 +1,4 @@
-package br.com.sdkopen.awss3.infrastructure.configuration;
+package br.com.sdkopen.storage.awss3.infrastructure.configuration;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -18,7 +18,7 @@ public class Configuration {
   @Value("${sdkopen.cloud.credentials.aws.secret-key}")
   private String secretKey;
 
-  @Value("${sdkopen.aws-s3.region}")
+  @Value("${sdkopen.storage.aws-s3.region}")
   private String region;
 
   @Bean

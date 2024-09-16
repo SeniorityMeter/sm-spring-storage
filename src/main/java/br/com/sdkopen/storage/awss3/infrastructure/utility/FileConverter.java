@@ -1,6 +1,6 @@
-package br.com.sdkopen.awss3.infrastructure.utility;
+package br.com.sdkopen.storage.awss3.infrastructure.utility;
 
-import br.com.sdkopen.awss3.infrastructure.exception.SDKOpenAwsS3Exception;
+import br.com.sdkopen.storage.awss3.infrastructure.exception.SDKOpenAwsS3Exception;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FileConverter {
+  public static String MESSAGE_ERROR = "Error on file conversion";
 
   public static File of(final InputStream file, final String filename) throws IOException {
     File fileConverted = new File(Objects.requireNonNull(filename));
@@ -20,7 +21,7 @@ public class FileConverter {
       fos.write(file.readAllBytes());
     } catch (IOException e) {
       Files.delete(fileConverted.toPath());
-      throw new SDKOpenAwsS3Exception("Error on file conversion");
+      throw SDKOpenAwsS3Exception.with(MESSAGE_ERROR);
     }
 
     return fileConverted;
